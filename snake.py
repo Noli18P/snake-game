@@ -1,6 +1,6 @@
 import turtle
 import time
-
+import random
 
 POSPONER = 0.1
 
@@ -19,6 +19,14 @@ serpiente.penup()
 serpiente.goto(0,0)
 serpiente.direction = 'stop'
 serpiente.color('white')
+
+#Comida
+comida = turtle.Turtle()
+comida.speed(0)
+comida.shape('circle')
+comida.penup()
+comida.goto(0,100)
+comida.color('blue')
 
 #Funciones
 def up_mov():
@@ -63,6 +71,11 @@ ventana.onkeypress(right_mov, 'Right')
 
 while True:
     ventana.update()
+
+    if serpiente.distance(comida) < 20:
+        x = random.randint(-680,680)
+        y = random.randint(-680,680)
+        comida.goto(x,y)
     
     movimiento()
 
