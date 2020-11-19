@@ -28,6 +28,9 @@ comida.penup()
 comida.goto(0,100)
 comida.color('blue')
 
+#Cuerpo de la serpiente
+cuerpo = []
+
 #Funciones
 def up_mov():
     serpiente.direction = 'up'
@@ -72,11 +75,30 @@ ventana.onkeypress(right_mov, 'Right')
 while True:
     ventana.update()
 
+    #colisiones
     if serpiente.distance(comida) < 20:
-        x = random.randint(-680,680)
-        y = random.randint(-680,680)
+        x = random.randint(-280,280)
+        y = random.randint(-280,280)
         comida.goto(x,y)
+
+        cuerpo_serpiente = turtle.Turtle()
+        cuerpo_serpiente.speed(0)
+        cuerpo_serpiente.shape('square')
+        cuerpo_serpiente.penup()
+        cuerpo_serpiente.color('green')
+        cuerpo.append(cuerpo_serpiente)
+
+    total_cuerpo = len(cuerpo)
+    for i in range(total_cuerpo -1, 0, -1):
+        x = cuerpo[i - 1].xcor()
+        y = cuerpo[i - 1].ycor()
+        cuerpo[i].goto(x,y)
     
+    if total_cuerpo > 0:
+        x = serpiente.xcor()
+        y = serpiente.ycor()
+        cuerpo[0].goto(x,y)
+
     movimiento()
 
     time.sleep(POSPONER)
