@@ -1,6 +1,7 @@
 import turtle
 import time
 
+
 POSPONER = 0.1
 
 #Configuracion ventana
@@ -16,10 +17,26 @@ serpiente.speed(0)
 serpiente.shape('square')
 serpiente.penup()
 serpiente.goto(0,0)
-serpiente.direction = 'left'
+serpiente.direction = 'stop'
 serpiente.color('white')
 
 #Funciones
+def up_mov():
+    serpiente.direction = 'up'
+
+
+def down_mov():
+    serpiente.direction = 'down'
+
+
+def left_mov():
+    serpiente.direction = 'left'
+
+
+def right_mov():
+    serpiente.direction = 'right'
+
+
 def movimiento():
     if serpiente.direction == 'up':
         y = serpiente.ycor()
@@ -37,9 +54,16 @@ def movimiento():
         x = serpiente.xcor()
         serpiente.setx(x - 20)
 
+#Teclado
+ventana.listen()
+ventana.onkeypress(up_mov, 'Up')
+ventana.onkeypress(down_mov, 'Down')
+ventana.onkeypress(left_mov, 'Left')
+ventana.onkeypress(right_mov, 'Right')
 
 while True:
     ventana.update()
+    
     movimiento()
 
     time.sleep(POSPONER)
