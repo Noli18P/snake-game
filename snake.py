@@ -3,6 +3,8 @@ import time
 import random
 
 POSPONER = 0.1
+score = 0
+high_score = 0
 
 #Configuracion ventana
 ventana = turtle.Screen()
@@ -30,6 +32,15 @@ comida.color('blue')
 
 #Cuerpo de la serpiente
 cuerpo = []
+
+#marcador
+marcador = turtle.Turtle()
+marcador.speed(0)
+marcador.color('white')
+marcador.penup()
+marcador.hideturtle()
+marcador.goto(0,300)
+marcador.write('Score: 0     High Score: 0', align='center', font=('Courier', 24, 'normal'))
 
 #Funciones
 def up_mov():
@@ -97,6 +108,15 @@ while True:
         cuerpo_serpiente.penup()
         cuerpo_serpiente.color('green')
         cuerpo.append(cuerpo_serpiente)
+
+        #Aumentar puntaje
+        score += 10
+        
+        if score > high_score:
+            high_score = score
+            
+        marcador.clear()
+        marcador.write('Score: {}     High Score: {}'.format(score,high_score), align='center', font=('Courier', 24, 'normal'))
 
     total_cuerpo = len(cuerpo)
     for i in range(total_cuerpo -1, 0, -1):
