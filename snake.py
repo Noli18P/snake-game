@@ -75,7 +75,14 @@ ventana.onkeypress(right_mov, 'Right')
 while True:
     ventana.update()
 
-    #colisiones
+    #colisiones borde
+    if serpiente.xcor() > 280 or serpiente.xcor() < -280 or serpiente.ycor() > 280 or serpiente.ycor() < -280:
+        time.sleep(1)
+        serpiente.goto(0,0)
+        serpiente.direction = 'stop'
+
+
+    #colisiones comida
     if serpiente.distance(comida) < 20:
         x = random.randint(-280,280)
         y = random.randint(-280,280)
