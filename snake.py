@@ -81,7 +81,10 @@ while True:
         serpiente.goto(0,0)
         serpiente.direction = 'stop'
 
+        for cuerpo in cuerpo_serpiente:
+            serpiente.goto(1000,1000)
 
+        cuerpo.clear()
     #colisiones comida
     if serpiente.distance(comida) < 20:
         x = random.randint(-280,280)
