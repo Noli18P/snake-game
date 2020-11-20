@@ -135,4 +135,15 @@ while True:
 
     movimiento()
 
+    #Colision cuerpo
+    for cuerpos in cuerpo:
+        if cuerpos.distance(serpiente) < 20:
+            time.sleep(1)
+            serpiente.goto(0,0)
+            serpiente.direction = 'stop'
+
+            for cuerpos in cuerpo:
+                cuerpos.goto(1000,1000)
+            cuerpos.clear()
+
     time.sleep(POSPONER)
