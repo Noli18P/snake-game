@@ -92,10 +92,14 @@ while True:
         serpiente.goto(0,0)
         serpiente.direction = 'stop'
 
-        for cuerpo in cuerpo_serpiente:
-            serpiente.goto(1000,1000)
+        for cuerpos in cuerpo:
+            cuerpos.goto(1000,1000)
 
         cuerpo.clear()
+        score = 0
+        marcador.clear()
+        marcador.write('Score: {}     High Score: {}'.format(score,high_score), align='center', font=('Courier', 24, 'normal'))
+
     #colisiones comida
     if serpiente.distance(comida) < 20:
         x = random.randint(-280,280)
@@ -114,7 +118,7 @@ while True:
         
         if score > high_score:
             high_score = score
-            
+
         marcador.clear()
         marcador.write('Score: {}     High Score: {}'.format(score,high_score), align='center', font=('Courier', 24, 'normal'))
 
